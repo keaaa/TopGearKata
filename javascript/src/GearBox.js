@@ -42,7 +42,7 @@ class GearBox {
     }
     if (this.gear > 6) {
       this.gear--;
-    } else if (this.gear < 1) {
+    } else if (this.gear < 1 && rpm > 0) {
       this.gear++;
     }
     this.rpm = rpm;
