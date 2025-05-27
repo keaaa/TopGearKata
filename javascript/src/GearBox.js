@@ -23,28 +23,29 @@
  *
  */
 class GearBox {
-  constructor () {
-    this.s = 0;
-    this.e = 0;
+  constructor(gear = 0, rpm = 0) {
+    this.gear = gear;
+    this.rpm = rpm;
   }
 
-  doIt (i) {
-    if (this.s < 0) {
+  doIt(rpm) {
+    if (this.gear < 0) {
       // do nothing!
-      this.e = i;
+      this.rpm = rpm;
     } else {
-      if (this.s > 0) {
-        if (i > 2000)
-          this.s++;
-      } else if (i < 500) {
-        this.s--;
+      if (this.gear > 0) {
+        if (rpm > 2000) this.gear++;
+        else if (rpm < 500) {
+          this.gear--;
+        }
       }
-    } if (this.s > 6) {
-      this.s--;
-    } else if (this.s < 1) {
-      this.s++;
     }
-    this.e = i;
+    if (this.gear > 6) {
+      this.gear--;
+    } else if (this.gear < 1) {
+      this.gear++;
+    }
+    this.rpm = rpm;
   }
 }
 
