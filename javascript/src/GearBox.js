@@ -22,31 +22,26 @@
  * of course use that range to shift gears!)
  *
  */
+const MAX_GEAR = 6;
+const MIN_GEAR = 0;
 class GearBox {
-  constructor(gear = 0, rpm = 0) {
+  constructor(gear = MIN_GEAR, rpm = 0) {
     this.gear = gear;
     this.rpm = rpm;
   }
 
   doIt(rpm) {
-    if (this.gear < 0) {
-      // do nothing!
-      this.rpm = rpm;
-    } else {
-      if (this.gear > 0) {
-        if (rpm > 2000) this.gear++;
-        else if (rpm < 500) {
-          this.gear--;
-        }
+    if (this.gear < 1 && rpm > 0) {
+      this.gear++;
+    } else if (this.gear > MIN_GEAR && this.gear < MAX_GEAR) {
+      if (rpm > 2000) this.gear++;
+      else if (rpm < 500) {
+        this.gear--;
       }
     }
-    if (this.gear > 6) {
-      this.gear--;
-    } else if (this.gear < 1 && rpm > 0) {
-      this.gear++;
-    }
+    
     this.rpm = rpm;
   }
 }
 
-module.exports = GearBox;
+module.exports = { GearBox, MAX_GEAR, MIN_GEAR };

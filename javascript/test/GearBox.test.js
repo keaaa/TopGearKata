@@ -1,4 +1,4 @@
-const GearBox = require("../src/GearBox");
+const { GearBox, MAX_GEAR, MIN_GEAR } = require("../src/GearBox");
 
 require("jest");
 
@@ -24,9 +24,9 @@ describe("GearBoxShould", () => {
     expect(box.gear).toBe(1);
   });
   it("gear max when rpm>2000", () => {
-    box = new GearBox(6);
+    box = new GearBox(MAX_GEAR);
     box.doIt(2400);
-    expect(box.gear).toBe(6);
+    expect(box.gear).toBe(MAX_GEAR);
   });
   
 });
