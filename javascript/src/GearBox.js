@@ -24,6 +24,14 @@
  */
 const MAX_GEAR = 6;
 const MIN_GEAR = 0;
+const GEAR_RPM_RANGE = {
+  1: { min: 500, max: 2000 },
+  2: { min: 500, max: 2000 },
+  3: { min: 500, max: 2000 },
+  4: { min: 500, max: 2000 },
+  5: { min: 500, max: 2000 },
+  6: { min: 500, max: Number.MAX_VALUE }
+}
 class GearBox {
   constructor(gear = MIN_GEAR, rpm = 0) {
     this.gear = gear;
@@ -34,12 +42,13 @@ class GearBox {
     if (this.gear < 1 && rpm > 0) {
       this.gear++;
     } else if (this.gear > MIN_GEAR && this.gear < MAX_GEAR) {
-      if (rpm > 2000) this.gear++;
-      else if (rpm < 500) {
+      var values = GEAR_RPM_RANGE[this.gear]
+      if (rpm > values.max) this.gear++;
+      else if (rpm < values.min) {
         this.gear--;
       }
     }
-    
+
     this.rpm = rpm;
   }
 }
